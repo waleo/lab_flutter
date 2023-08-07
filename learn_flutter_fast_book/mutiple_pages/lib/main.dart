@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'pages/buttons_page.dart';
+import 'pages/column_spaced_evenly_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -38,12 +39,20 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     Widget page;
 
+    final Map<int, Map<String, Object>> pageMap = {
+      0: {'name': 'Buttons', 'object': const ButtonsPage()},
+      1: {
+        'name': 'Column Spaced Evenly',
+        'object': const ColumnSpacedEvenlyPage()
+      }
+    };
+
     switch (selectedIndex) {
       case 0:
-        page = const ButtonsPage();
+        page = pageMap[0]!['object'] as Widget;
         break;
       case 1:
-        page = const Placeholder();
+        page = pageMap[1]!['object'] as Widget;
         break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
@@ -55,11 +64,13 @@ class _MyHomePageState extends State<MyHomePage> {
         SafeArea(
             child: NavigationRail(
           extended: true,
-          destinations: const [
+          destinations: [
             NavigationRailDestination(
-                icon: Icon(Icons.smart_button_sharp), label: Text('Buttons')),
+                icon: const Icon(Icons.input),
+                label: Text(pageMap[0]!['name'] as String)),
             NavigationRailDestination(
-                icon: Icon(Icons.favorite), label: Text('Page 2'))
+                icon: const Icon(Icons.circle),
+                label: Text(pageMap[1]!['name'] as String))
           ],
           selectedIndex: selectedIndex,
           onDestinationSelected: (value) {
