@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
 
-class ButtonsPage extends StatelessWidget {
+class ButtonsPage extends StatefulWidget {
   const ButtonsPage({super.key});
 
   @override
+  State<ButtonsPage> createState() => _ButtonsPageState();
+}
+
+class _ButtonsPageState extends State<ButtonsPage> {
+  @override
   Widget build(BuildContext context) {
+    List<String> dropdownValues = <String>['Mens', 'Womens', 'None'];
+
+    String dropdownValue = dropdownValues.first;
+
     Row textButtonRow =
         Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
       TextButton(
@@ -32,11 +41,20 @@ class ButtonsPage extends StatelessWidget {
     ]);
     Row dropdownButtonRow =
         Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-      DropdownButton(items: const [
-        DropdownMenuItem(value: 'Mens', child: Text('Mens')),
-        DropdownMenuItem(value: 'Womens', child: Text('Womens')),
-        DropdownMenuItem(value: 'None', child: Text('None'))
-      ], onChanged: (value) => debugPrint('Changed: $value')),
+      DropdownButton(
+        items: [
+          DropdownMenuItem(
+              value: dropdownValues[0], child: Text(dropdownValues[0])),
+          DropdownMenuItem(
+              value: dropdownValues[1], child: Text(dropdownValues[1])),
+          DropdownMenuItem(
+              value: dropdownValues[2], child: Text(dropdownValues[2]))
+        ],
+        onChanged: (String? value) => setState(() {
+          dropdownValue = value!;
+        }),
+        value: dropdownValue,
+      ),
       const Text('Dropdown Button')
     ]);
     Row backButtonRow = const Row(
