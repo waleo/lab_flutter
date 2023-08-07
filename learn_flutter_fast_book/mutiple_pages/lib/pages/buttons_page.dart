@@ -34,7 +34,8 @@ class ButtonsPage extends StatelessWidget {
         Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
       DropdownButton(items: const [
         DropdownMenuItem(value: 'Mens', child: Text('Mens')),
-        DropdownMenuItem(value: 'Womens', child: Text('Womens'))
+        DropdownMenuItem(value: 'Womens', child: Text('Womens')),
+        DropdownMenuItem(value: 'None', child: Text('None'))
       ], onChanged: (value) => debugPrint('Changed: $value')),
       const Text('Dropdown Button')
     ]);
