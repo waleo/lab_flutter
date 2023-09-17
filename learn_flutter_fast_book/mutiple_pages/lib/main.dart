@@ -41,29 +41,30 @@ class _MyHomePageState extends State<MyHomePage> {
     Widget page;
 
     final Map<int, Map<String, Object>> pageMap = {
-      0: {'name': 'Buttons', 'object': const ButtonsPage()},
+      0: {
+        'name': 'Buttons',
+        'icon': const Icon(Icons.input),
+        'object': const ButtonsPage()
+      },
       1: {
         'name': 'Column Spaced Evenly',
+        'icon': const Icon(Icons.circle),
         'object': const ColumnSpacedEvenlyPage()
       },
       2: <String, Object>{
         'name': 'Column Expanded',
+        'icon': const Icon(Icons.wc),
         'object': const ColumnExpandedPage()
       }
     };
 
-    switch (selectedIndex) {
-      case 0:
-        page = pageMap[0]!['object'] as Widget;
-        break;
-      case 1:
-        page = pageMap[1]!['object'] as Widget;
-        break;
-      case 2:
-        page = pageMap[2]!['object'] as Widget;
-        break;
-      default:
-        throw UnimplementedError('no widget for $selectedIndex');
+    page = pageMap[selectedIndex]!['object'] as Widget;
+
+    List<NavigationRailDestination> navDestinations = [];
+    for (var properties in pageMap.values) {
+      navDestinations.add(NavigationRailDestination(
+          icon: properties['icon'] as Icon,
+          label: Text(properties['name'] as String)));
     }
 
     return Scaffold(
@@ -72,17 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
         SafeArea(
             child: NavigationRail(
           extended: true,
-          destinations: [
-            NavigationRailDestination(
-                icon: const Icon(Icons.input),
-                label: Text(pageMap[0]!['name'] as String)),
-            NavigationRailDestination(
-                icon: const Icon(Icons.circle),
-                label: Text(pageMap[1]!['name'] as String)),
-            NavigationRailDestination(
-                icon: const Icon(Icons.tv),
-                label: Text(pageMap[2]!['name'] as String))
-          ],
+          destinations: navDestinations,
           selectedIndex: selectedIndex,
           onDestinationSelected: (value) {
             setState(() {
