@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'pages/buttons_page.dart';
 import 'pages/column_spaced_evenly_page.dart';
+import 'pages/column_expanded.dart';
 
 void main() {
   runApp(const MyApp());
@@ -44,6 +45,10 @@ class _MyHomePageState extends State<MyHomePage> {
       1: {
         'name': 'Column Spaced Evenly',
         'object': const ColumnSpacedEvenlyPage()
+      },
+      2: <String, Object>{
+        'name': 'Column Expanded',
+        'object': const ColumnExpandedPage()
       }
     };
 
@@ -53,6 +58,9 @@ class _MyHomePageState extends State<MyHomePage> {
         break;
       case 1:
         page = pageMap[1]!['object'] as Widget;
+        break;
+      case 2:
+        page = pageMap[2]!['object'] as Widget;
         break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
@@ -70,7 +78,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 label: Text(pageMap[0]!['name'] as String)),
             NavigationRailDestination(
                 icon: const Icon(Icons.circle),
-                label: Text(pageMap[1]!['name'] as String))
+                label: Text(pageMap[1]!['name'] as String)),
+            NavigationRailDestination(
+                icon: const Icon(Icons.tv),
+                label: Text(pageMap[2]!['name'] as String))
           ],
           selectedIndex: selectedIndex,
           onDestinationSelected: (value) {
