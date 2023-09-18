@@ -39,7 +39,7 @@ class ColumnExpandedPage extends StatelessWidget {
           Expanded(child: greenButton),
           Expanded(child: blueButton)
         ],
-      )),
+        )),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mutiple_pages/pages/row_main_axis_alignment.dart';
 import 'pages/buttons_page.dart';
 import 'pages/column_spaced_evenly_page.dart';
 import 'pages/column_expanded.dart';
@@ -55,6 +56,11 @@ class _MyHomePageState extends State<MyHomePage> {
         'name': 'Column Expanded',
         'icon': const Icon(Icons.wc),
         'object': const ColumnExpandedPage()
+      },
+      3: {
+        'name': 'Row Main Axis Alignment',
+        'icon': const Icon(Icons.hd),
+        'object': const RowMainAxisAlignmentPage()
       }
     };
 
